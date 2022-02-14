@@ -423,6 +423,13 @@ mod tests {
     fn test_included_configs() {
         let output = r#"{"config": "some config data", "included_configs": [{"path": "/some/path", "raw_contents": "some contents", "variable_replaced_contents": "some contents"}]}"#;
         let o: Result<Config, serde_json::error::Error> = serde_json::from_str(output);
+        assert!(o.is_ok())
+    }
+
+    #[test]
+    fn test_binding_state() {
+        let output = r#"{"name": "default"}"#;
+        let o: Result<BindingState, serde_json::error::Error> = serde_json::from_str(output);
         assert!(o.is_ok());
     }
 
